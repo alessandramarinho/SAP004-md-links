@@ -1,4 +1,32 @@
 {
   "name": "md-links",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "description": "## Índice",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alessandramarinho/SAP004-md-links.git"
+  },
+  "author": "Alessandra Marinho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alessandramarinho/SAP004-md-links/issues"
+  },
+  "homepage": "https://github.com/alessandramarinho/SAP004-md-links#readme",
+  "devDependencies": {
+    "eslint": "^7.3.1",
+    "jest": "^26.1.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-jest": "^26.1.0",
+    "chalk": "^4.1.0"
+  }
 }
