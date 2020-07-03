@@ -21,5 +21,5 @@ return new Promise ((resolve, rejects) => {
 });
 }
 
-// mdLinks(process.argv[2])
-console.log(process.argv)
+mdLinks(process.argv[2])
+// console.log(process.argv)
