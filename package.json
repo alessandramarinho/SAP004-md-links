@@ -23,7 +23,7 @@
     "md-links": "CLI.js",
     "alessandramarinho/SAP004-md-links": "CLI.js"
   },
-  "publicshConfig":{
+  "publicshConfig": {
     "acess": "public"
   },
   "devDependencies": {

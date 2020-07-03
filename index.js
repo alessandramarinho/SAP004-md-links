@@ -11,7 +11,7 @@ return new Promise ((resolve, rejects) => {
       const array = data.match(regexMdlinks)
       const result = array.map((el) => {
         const cutText = el.split('](');
-        const text = cutText[0]
+        const text = cutText[0].replace ('\n','');
         const href = cutText[1];
         return { text, href, file }
       });
@@ -21,5 +21,6 @@ return new Promise ((resolve, rejects) => {
 });
 }
 
-mdLinks(process.argv[2])
-// console.log(process.argv)
+// mdLinks(process.argv[2])
+module.exports = mdLinks
+
