@@ -21,6 +21,7 @@ return new Promise ((resolve, rejects) => {
 });
 }
 
+
 // mdLinks(process.argv[2])
-module.exports = mdLinks
+ module.exports = mdLinks
 
