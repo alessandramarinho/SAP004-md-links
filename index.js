@@ -1,6 +1,8 @@
 const fs = require ('fs');
+const url = require ('valid-url')
 
-function mdLinks (file) {
+function mdLinks (file, option) => {
+
 return new Promise ((resolve, rejects) => {
   fs.readFile(file,'utf8', (err, data) => {
     if (err) {
