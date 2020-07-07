@@ -2,6 +2,7 @@
 
 const mdLinks = require ('./index.js');
 const chalk = require('chalk');
+const validateLinks = require ('./index.js')
 
 
 mdLinks(process.argv[2])
