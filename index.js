@@ -1,29 +1,45 @@
 const fs = require ('fs');
-const url = require ('valid-url')
+// const url = require ('valid-url')
 
-function mdLinks (file, option) => {
-
-return new Promise ((resolve, rejects) => {
-  fs.readFile(file,'utf8', (err, data) => {
-    if (err) {
-      rejects (err.message);
-    } else {
-      const regexMdlinks = /([^[]+)\](\([^)]*)/gm 
-      // \[(\S.*)\](\([^)]*)
-      const array = data.match(regexMdlinks)
-      const result = array.map((el) => {
-        const cutText = el.split('](');
-        const text = cutText[0].replace ('\n','');
-        const href = cutText[1];
-        return { text, href, file }
-      });
-      resolve(result)
-    }
-  });
-});
+const mdLinks = (file) => {
+  let obj = [];
+  let arrayLinks = [];
+  return new Promise ((resolve, rejects) => {
+    fs.readFile(file,'utf8', (err, data) => {
+      if (err) {
+        rejects (err);
+      } else {
+        arrayLinks = data.match(/\[(.*?)\]\((.*?)\)/g);
+        arrayLinks.forEach(link => {
+          obj.push({text: `${link.match(/(?<=\[).+?(?=\])/g)}`,
+          href: `${link.match(/(?<=\().+?(?=\))/g)}`, 
+          file})
+        })
+        resolve(obj)
+      }
+    })
+  })
 }
+
+// return new Promise ((resolve, rejects) => {
+//   fs.readFile(file,'utf8', (err, data) => {
+//     if (err) {
+//       rejects (err.message);
+//     } else {
+//       const regexMdlinks = /([^[]+)\](\([^)]*)/gm 
+//       const array = data.match(regexMdlinks)
+//       const result = array.map((el) => {
+//         const cutText = el.split('](');
+//         const text = cutText[0].replace ('\n','');
+//         const href = cutText[1];
+//         return { text, href, file }
+//       });
+//       resolve(result)
+//     }
+//   });
+// });
+// }
 
 
 // mdLinks(process.argv[2])
- module.exports = mdLinks
-
+module.exports = mdLinks
