@@ -16,34 +16,23 @@ const mdLinks = (file, option) => {
           arrayLinks.forEach(link => {
             const text = link.match(/(?<=\[).+?(?=\])/g);
             const href = link.match(/(?<=\().+?(?=\))/g)
-            arrayLinks.forEach(link => {
-              obj.push({
-                text,
-                href,
-              })
-            })
-            Promise.all(
-              obj.map(el =>{
-                if (validUrl.isUri(el.href)) {
-                  return fetch(el.href, { method: 'GET' })
-                } else {
-                  return { status: '400' }
-                }
-              })
-            ).then(res => {
-              res.forEach((res, el) => {
-                obj[el].status = res.status
-              })
-              resolve(obj)
+            obj.push({
+              text,
+              href,
+              file
             })
           })
+          console.log(obj)
+
+
           }else {
             arrayLinks.forEach(link => {
               const text = link.match(/(?<=\[).+?(?=\])/g);
               const href = link.match(/(?<=\().+?(?=\))/g)
               obj.push({
                 text,
-                href
+                href,
+                file
               })
             })
             console.log(obj)
