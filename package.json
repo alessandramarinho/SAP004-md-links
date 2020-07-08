@@ -33,10 +33,9 @@
     "@babel/preset-env": "^7.10.4",
     "babel-jest": "^26.1.0",
     "chalk": "^4.1.0",
-    "url-exists-deep": "^2.0.10",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "node-fetch": "^2.6.0"
   },
   "dependencies": {
-    "isuri": "^2.0.3"
   }
 }
