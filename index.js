@@ -1,52 +1,57 @@
 const fs = require('fs');
-const fetch = require('node-fetch')
 const validUrl = require('valid-url')
+const fetch = require('node-fetch')
 
-const mdLinks = (file, option) => {
-  const obj = [];
-  let arrayLinks = [];
-  return new Promise((resolve, rejects) => {
+const readFiles = (file, option) => {
+  let obj = []
+  let arrayLinks = []
+  option = { validate: true}
+
+  return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
-        rejects(err);
-      }
-      else {
-        arrayLinks = data.match(/\[(.*?)\]\((.*?)\)/g);
-        if (option.includes('--validate')) {
+        reject(err)
+      } else {
+        arrayLinks = data.match(/\[(.*?)\]\((.*?)\)/g)
+        if (option) {
           arrayLinks.forEach(link => {
-            const text = link.match(/(?<=\[).+?(?=\])/);
-            const href = link.match(/(?<=\().+?(?=\))/)
             obj.push({
-              text: text[0],
-              href: href[0],
+              text: `${link.match(/(?<=\[).+?(?=\])/g)}`,
+              href: `${link.match(/(?<=\().+?(?=\))/g)}`,
               file
             })
           })
-          console.log(obj)
-
-
-          }else {
-            arrayLinks.forEach(link => {
-              const text = link.match(/(?<=\[).+?(?=\])/g);
-              const href = link.match(/(?<=\().+?(?=\))/g)
-              obj.push({
-                text,
-                href,
-                file
-              })
+          Promise.all(
+            obj.map(el => {
+              if (validUrl.isUri(el.href)) {
+                return fetch(el.href, { method: 'GET' })
+              } else {
+                return { status: '400', 
+              statusText:'FAIL'}
+              }
             })
-            console.log(obj)
+          ).then(res => {
+            res.forEach((res, i) => {
+              obj[i].status = res.status 
+              obj[i].statusText = res.statusText
+            })
+            resolve(obj)
+          })
+        } else {
+          arrayLinks.forEach(link => {
+            obj.push({
+              text: `${link.match(/(?<=\[).+?(?=\])/g)}`,
+              href: `${link.match(/(?<=\().+?(?=\))/g)}`,
+            })
+          })
           resolve(obj)
-          }
-
-    }})
+          
+        }
+      }
     })
-  }
+  })
+}
 
-
-module.exports = mdLinks
-mdLinks(process.argv[2], process.argv)
-// .then (res => console.log (res))
-
+module.exports = readFiles
 
 
