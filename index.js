@@ -14,11 +14,11 @@ const mdLinks = (file, option) => {
         arrayLinks = data.match(/\[(.*?)\]\((.*?)\)/g);
         if (option.includes('--validate')) {
           arrayLinks.forEach(link => {
-            const text = link.match(/(?<=\[).+?(?=\])/g);
-            const href = link.match(/(?<=\().+?(?=\))/g)
+            const text = link.match(/(?<=\[).+?(?=\])/);
+            const href = link.match(/(?<=\().+?(?=\))/)
             obj.push({
-              text,
-              href,
+              text: text[0],
+              href: href[0],
               file
             })
           })
