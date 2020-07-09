@@ -2,15 +2,22 @@
 
 const mdLinks = require('./main.js');
 const chalk = require('chalk');
+const args = process.argv.slice(2)
 
 mdLinks(process.argv[2], process.argv[3])
   .then((obj) => {
-    obj.forEach((el) => {
-      if (process.argv[3] === '--validate') {
-        let option = { validate: true }
-        console.log(`${chalk.redBright.bold(el.text)} ${chalk.blueBright.bold(el.href)} ${chalk.yellow.bold(el.status)} ${chalk.green.bold(el.statusText)}`)
+      if (process.argv[3] === '--validate'){
+        obj.forEach (i =>{
+          console.log(`${chalk.redBright.bold('text:')}, ${chalk.blueBright.bold(i.text)},  ${chalk.cyan.bold('href:')},  ${chalk.yellow.bold(i.href)},  ${chalk.magenta.bold('status:')}, ${chalk.green.bold((i.status), (i.statusText).toString())}`)
+          })
+      } else if (args[1]) {
+        console.log(`${chalk.redBright.bold("Command not found. Did you mean '--validate'?")}`)
       } else {
-        console.log(el.text, el.href)
+        obj.forEach(i => {
+          console.log(`${chalk.blueBright.bold('text:', i.text)}, ${chalk.yellow.bold('href:', i.href)}`)
+        })
       }
     })
-  })
+    .catch(err => console.log(err))
+
+

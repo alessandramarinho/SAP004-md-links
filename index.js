@@ -5,7 +5,7 @@ const fetch = require('node-fetch')
 const readFiles = (file, option) => {
   let obj = []
   let arrayLinks = []
-  option = { validate: true}
+  option = { validate: true }
 
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', (err, data) => {
@@ -26,13 +26,15 @@ const readFiles = (file, option) => {
               if (validUrl.isUri(el.href)) {
                 return fetch(el.href, { method: 'GET' })
               } else {
-                return { status: '400', 
-              statusText:'FAIL'}
+                return {
+                  status: '400',
+                  statusText: 'FAIL'
+                }
               }
             })
           ).then(res => {
             res.forEach((res, i) => {
-              obj[i].status = res.status 
+              obj[i].status = res.status
               obj[i].statusText = res.statusText
             })
             resolve(obj)
@@ -45,7 +47,6 @@ const readFiles = (file, option) => {
             })
           })
           resolve(obj)
-          
         }
       }
     })
@@ -53,5 +54,3 @@ const readFiles = (file, option) => {
 }
 
 module.exports = readFiles
-
-
