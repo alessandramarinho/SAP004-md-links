@@ -8,8 +8,9 @@ describe('mdLinks', () => {
   })
 
   it('deve retornar a validação', done => {
-    mdLinks('./test/', '--validate').then (link => {
-      expect(link).toEqual(mock.resultValidate);
+    mdLinks('./test', '--validate').catch (link => {
+      console.log(link)
+      expect(link).toBe('Sorry, the file/directory could not be read');
       done()
     });
   });
@@ -19,9 +20,15 @@ describe('mdLinks', () => {
       done()
     });
   });
+  it('should return status', done => {
+    mdLinks('./test//mock.md', '--stats').then(link => {
+      expect(link).toEqual(mock.resultStats);
+      done()
+    });
+  });
   it('deve retornar um array de objetos', done => {
-    mdLinks('./test//test.md').then((link) => {
-      expect(link).toEqual(mock.resultArray);
+    mdLinks('./test//mock.md').then((link) => {
+      expect(link).toEqual(mock.resultValidate);
       done()
     });
   });

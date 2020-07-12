@@ -10,6 +10,7 @@ const readFiles = (file, option) => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
+        err = 'Sorry, the file/directory could not be read'
         reject(err)
       } else {
         arrayLinks = data.match(/\[(.*?)\]\((.*?)\)/g)
