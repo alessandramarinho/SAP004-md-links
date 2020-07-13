@@ -17,9 +17,6 @@
 ## 1. Prefácio
 
 
-[Markdown](https://pt.wikipedia.org/wiki/gITub)
-[Markdown](https://pt.wikipedia.org/wiki/Markdown)
-[Markdown](https://pt.wikipedia.org/wiki/Markdown)
 [Markdown](https://pt.wikipedia.org/wiki/Markdown) é uma linguagem de marcação
 muito popular entre os programadores. É usada em muitas plataformas que
 manipulam texto (GitHub, fórum, blogs e etc) e é muito comum encontrar arquivos

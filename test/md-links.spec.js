@@ -40,6 +40,7 @@ describe('mdLinks', () => {
   })
 })
 
+
 // it('retorna 3 links com status', done => {
   //   mdLinks('./test/mock.md', '--validate').then(link => {
   //     console.log(link)

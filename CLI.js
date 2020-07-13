@@ -13,11 +13,8 @@ mdLinks(process.argv[2], process.argv[3])
       }else if (process.argv.includes('--stats')){
       const stats = obj.map(el => el.href)
       const uniqueLinks = new Set(stats)
-      const brokenLinks = obj.filter(el =>{
-        if(el.status >= 400 && el.status < 500){
-          return el.status  
-        }
-      })
+      const brokenLinks = obj.filter(el => el.status >= 400 && el.status < 500)
+  
         console.log(chalk.yellow.bold(`Total Links: ${stats.length}`));
         console.log(chalk.green.bold(`Total Links Working ${uniqueLinks.size}`));
         console.log(chalk.red.bold(`Total Broken links: ${brokenLinks.length}`));

@@ -35,11 +35,10 @@ const resultValidate = [
     "text": "Google",
     },
   ];
-    const resultStats = [
-      {
+    const resultStats = [{
       brokenLinks: 1,
       stats: 5,
-      uniqueLinks: 5,
+      uniqueLinks: 4,
     }
   ];
 
