@@ -20,12 +20,6 @@ describe('mdLinks', () => {
       done()
     });
   });
-  it('should return status', done => {
-    mdLinks('./test//mock.md', '--stats').then(link => {
-      expect(link).toEqual(mock.resultStats);
-      done()
-    });
-  });
   it('deve retornar um array de objetos', done => {
     mdLinks('./test//mock.md').then((link) => {
       expect(link).toEqual(mock.resultValidate);
