@@ -4,6 +4,7 @@
 
 * [1. Introdução](#1-introdução)
 * [2. Instruções de Instalação e Uso](#2-intruções-de-instalação-e-uso)
+* [3. Ferramentas e Bibliotecas](#3-ferramentas-e-bibliotecas)
 
 
 ***
@@ -16,6 +17,7 @@ Estes arquivos normalmente contém *links* que muitas vezes estão quebrados, ou
 
 Portanto, o objetivo além de acessar os links destes arquivos, também é o de validá-los retornando seu *status code*.
 
+[Terminal](src/assets/img_Md_Links.png)
 
 ## 2. Instruções de Instalação e Uso
 
@@ -39,6 +41,21 @@ Caso se deseje saber estatísticas sobre os links, como por exemplo quantos dele
 Caso após a utilização, se deseje retirar a biblioteca da máquina, basta digitar:
 
 `npm uninstall -g md-links`
+
+## 3. Ferramentas e Bibliotecas
+
+Para o desenvolvimento desse projeto foram utilizados os seguintes programas, bibliotecas e suas respectivas versões: 
+
+* Chalk- Versão 4.1.0
+
+* Node.js- Versão 12.16.1
+
+* Valid-url- Versão 1.0.9
+
+* Node-fetch- Versão 2.6.0
+
+* NPM- Versão 6.14.5
+
 
 
 
