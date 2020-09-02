@@ -1,30 +1,30 @@
-const mdLinks = require('../lib/index');
+const mdLinks = require('../lib/mdLinks');
 const mock = require('./mock.js');
 
 
 describe('mdLinks', () => {
-  it('é uma function', () => {
+  it('it a function', () => {
     expect(typeof mdLinks).toBe('function')
   })
 
-  it('deve retornar o diretorio', done => {
-    mdLinks('./exemple').catch (link => {
-      expect(link).toBe('Sorry, the file/directory could not be read');
-      done()
-    });
-  });
-  it('retorna links com validação', done => {
-    mdLinks('./tests//mock.md', '--validate').then(link => {
-      expect(link).toEqual(mock.resultValidate);
-      done()
-    });
-  });
-  it('deve retornar um array de objetos', done => {
-    mdLinks('./tests//mock.md', '--validate').then((link) => {
-      expect(link).toEqual(mock.resultValidate);
-      done()
-    });
-  });
+  it('returns 3 links with validate', () => {
+      return mdLinks('./src/tests/mock.md', '--validate').then(link => {
+      expect(link).toMatchObject(mock.resultValidate)
+    })
+  })
+
+  it('return an array of objects', () => {
+    return mdLinks('./src/tests/mock.md').then(link => {
+      expect(link).toMatchObject(mock.resultReaddir)
+    })
+  })
+
+  it('return an array em diretorio', () => {
+    return mdLinks('./src/tests').then(link => {
+      expect(link).toMatchObject(mock.resultReaddir)
+    })
+  })
+
   it('erro', () => {
     mdLinks('./tests/mock.md')
       .catch((err) => {
@@ -32,4 +32,5 @@ describe('mdLinks', () => {
     })
   })
 })
+
 

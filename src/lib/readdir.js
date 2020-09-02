@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const readFiles = require('./index.js');
+const readFiles = require('./readvalidator.js');
 
 const readPath = (dir, option) => {
   return new Promise((resolve, reject) => {

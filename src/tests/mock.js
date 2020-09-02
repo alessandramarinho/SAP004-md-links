@@ -1,40 +1,42 @@
+const resultReaddir = [
+  {
+    text: '8. Checklist',
+    href: '#8-checklist'
+  },
+  { 
+    text: 'Markdown', 
+    href: 'https://pt.wikipedia.org/wiki/Markdown' 
+  },
+  { 
+    text: 'Jest', 
+    href: 'https://jestjs.io/' 
+  }
+]
+
 const resultValidate = [
-  {
-    "text": '8. Guias, dicas e leituras complementares',
-    "href": '#8-guias-dicas-e-leituras-complementares',
-    "status": '400',
-    "file": './tests/mock.md',
-    "statusText": 'FAIL'
+  { 
+    file: './src/tests/mock.md',
+    text: '8. Checklist', 
+    href: '#8-checklist', 
+    status: '400',
+    statusText: 'FAIL',
   },
-  {
-    "text": 'Markdown',
-    "href": 'https://pt.wikipedia.org/wiki/Markdown',
-    "status": 200,
-    "file": './tests/mock.md',
-    "statusText": 'OK'
+  { 
+    file: './src/tests/mock.md',
+    text: 'Markdown', 
+    href: 'https://pt.wikipedia.org/wiki/Markdown', 
+    status: 200,
+    statusText: 'OK'
   },
-  {
-    "text": 'Jest',
-    "href": 'https://jestjs.io/',
-    "status": 200,
-    "file": './tests/mock.md',
-    "statusText": 'OK'
-  },
-  {
-    "file": "./tests/mock.md",
-    "href": "https://github.com/",
-    "status": 200,
-    "statusText": "OK",
-    "text": "GitHub",
-    },
-    {
-    "file": "./tests/mock.md",
-    "href": "https://www.google.com/",
-    "status": 200,
-    "statusText": "OK",
-    "text": "Google",
-    },
-  ];
+  { 
+    file: './src/tests/mock.md',
+    text: 'Jest', 
+    href: 'https://jestjs.io/', 
+    status: 200,
+    statusText: 'OK'
+  }
+]
+
     const resultStats = [{
       brokenLinks: 1,
       stats: 5,
@@ -42,4 +44,4 @@ const resultValidate = [
     }
   ];
 
-module.exports = { resultStats, resultValidate };
+module.exports = { resultStats, resultReaddir, resultValidate };

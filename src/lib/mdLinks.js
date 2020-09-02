@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readPath = require('./readdir');
-const readFiles = require('./index.js');
+const readFiles = require('./readvalidator.js');
 
 const mdLinks = (file, option) => {
   return new Promise((resolved, rejected) => {

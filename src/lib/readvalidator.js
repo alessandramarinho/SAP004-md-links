@@ -14,7 +14,6 @@ const readFiles = (file, option) => {
         reject(err)
       } else {
         arrayLinks = data.match(/\[(.*?)\]\((.*?)\)/g)
-        if (option) {
           arrayLinks.forEach(link => {
             obj.push({
               text: `${link.match(/(?<=\[).+?(?=\])/g)}`,
@@ -22,33 +21,28 @@ const readFiles = (file, option) => {
               file
             })
           })
-          Promise.all(
-            obj.map(el => {
-              if (validUrl.isUri(el.href)) {
-                return fetch(el.href, { method: 'GET' })
-              } else {
-                return {
-                  status: '400',
-                  statusText: 'FAIL'
+          if (option){
+            Promise.all(
+              obj.map(el => {
+                if (validUrl.isUri(el.href)) {
+                  return fetch(el.href, { method: 'GET' })
+                } else {
+                  return {
+                    status: '400',
+                    statusText: 'FAIL'
+                  }
                 }
-              }
+              })
+            ).then(res => {
+              res.forEach((res, i) => {
+                obj[i].status = res.status
+                obj[i].statusText = res.statusText
+              })
+              resolve(obj)
             })
-          ).then(res => {
-            res.forEach((res, i) => {
-              obj[i].status = res.status
-              obj[i].statusText = res.statusText
-            })
+          }else{
             resolve(obj)
-          })
-        } else {
-          arrayLinks.forEach(link => {
-            obj.push({
-              text: `${link.match(/(?<=\[).+?(?=\])/g)}`,
-              href: `${link.match(/(?<=\().+?(?=\))/g)}`,
-            })
-          })
-          resolve(obj)
-        }
+          }
       }
     })
   })
