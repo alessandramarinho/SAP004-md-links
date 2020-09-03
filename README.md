@@ -17,7 +17,7 @@ Estes arquivos normalmente contém *links* que muitas vezes estão quebrados, ou
 
 Portanto, o objetivo além de acessar os links destes arquivos, também é o de validá-los retornando seu *status code*.
 
-![Terminal](src/assets/img_mdlinks.png)
+![Terminal](src/assets/mdlinks_img.png)
 
 ## 2. Instruções de Instalação e Uso
 
